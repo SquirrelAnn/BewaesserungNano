@@ -1,22 +1,23 @@
 #include <Arduino.h>
 
-// for sensor measuring and possible pump interval
+// last time the sensors were measured, in milliseconds
 unsigned long previousMillis = 0;
+// for sensor measuring and possible pump interval
 const long measuringInterval = 18000000; // 5 hours
 
-// for water pumps to relay
+// water pumps to relay
 int IN1 = 2;
 int IN2 = 3;
 int IN3 = 4;
 int IN4 = 5;
 
-// for water level sensors
+// soil moisture sensors
 int Pin1 = A0;
 int Pin2 = A1;
 int Pin3 = A2;
 int Pin4 = A3;
 
-// for soil moisture sensors
+// measured values of soil humidity
 float soilHumid1 = 0.0;
 float soilHumid2 = 0.0;
 float soilHumid3 = 0.0;
