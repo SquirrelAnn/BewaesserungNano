@@ -71,6 +71,10 @@ String pumpIfDry(float sensorValue, int sensorNumber, int pumpNumber){
   }  
 }
 
+float calcSoilHumid(int sensorPin){
+  return (float(analogRead(sensorPin))/1023.0)*3.3;
+}
+
 void loop() {
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= measuringInterval 
@@ -79,16 +83,16 @@ void loop() {
     previousMillis = currentMillis;
 
     // read sensor values, print them and water if necessary
-    soilHumid1 = (float(analogRead(Pin1))/1023.0)*3.3;
+    soilHumid1 = calcSoilHumid(Pin1);
     Serial.println(pumpIfDry(soilHumid1, 1, IN1));
 
-    soilHumid2 = (float(analogRead(Pin2))/1023.0)*3.3;
+    soilHumid2 = calcSoilHumid(Pin2);
     Serial.println(pumpIfDry(soilHumid2, 2, IN2));
 
-    soilHumid3 = (float(analogRead(Pin3))/1023.0)*3.3;
+    soilHumid3 = calcSoilHumid(Pin3);
     Serial.println(pumpIfDry(soilHumid3, 3, IN3));
 
-    soilHumid4 = (float(analogRead(Pin4))/1023.0)*3.3;
+    soilHumid4 = calcSoilHumid(Pin4);
     Serial.println(pumpIfDry(soilHumid4, 4, IN4));
   }  
 }
