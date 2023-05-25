@@ -116,13 +116,13 @@ String pumpIfDry(float sensorValue, int sensorNumber, int pumpNumber){
 
     String pumpNo = "Pump";
     String waterMsg = ": Watering finished.";
-    String returnMsg = pumpNo +  pumpNumber + waterMsg;
+    String returnMsg = pumpNo +  (pumpNumber-1) + ":" + sensorValue + waterMsg;
     return returnMsg;
   }
   else{
     String pumpNo = "Pump";
-    String waterMsg = ": No watering.";
-    String returnMsg = pumpNo + pumpNumber + waterMsg;
+    String waterMsg = " No watering.";
+    String returnMsg = pumpNo + (pumpNumber-1) + ":" + sensorValue + waterMsg;
     return returnMsg;
   }  
 }
@@ -156,8 +156,11 @@ void loop() {
     soilHumid4 = calcSoilHumid(Pin4);
     String EpaperMsg4 = pumpIfDry(soilHumid4, 4, IN4);
     Serial.println(pumpIfDry(soilHumid4, 4, IN4));
-
-    String msgComplete = EpaperMsg1 + EpaperMsg2 + EpaperMsg3 + EpaperMsg4;
+   
+    String msgComplete = "\n" + EpaperMsg1 
+    + "\n" + EpaperMsg2
+    + "\n" + EpaperMsg3
+    + "\n" + EpaperMsg4;
 
     // const char* str = EpaperMsg1.c_str();
     const char* str = msgComplete.c_str();
